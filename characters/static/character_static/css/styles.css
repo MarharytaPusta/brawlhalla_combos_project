@@ -1,0 +1,53 @@
+body {
+    background: url("../images/blue-background.avif");
+    background-size: cover;
+    color: #DAA349;
+}
+
+.left-side {
+    float: left;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.left-side b{
+    font-size: 5vw;
+}
+
+.left-side img {
+    width: 70%;
+}
+
+
+.right-side {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+
+.right-side h2{
+    font-size: 3.7vw;
+    margin-bottom: 20px
+}
+
+.right-side li{
+    font-size: 2.8vw;
+}
+
+.weapon-with-combos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.weapon-with-combos::before,
+.weapon-with-combos::after {
+    content: "";
+    display: block;
+    width: 750px;
+    height: 2px;
+    background-color: #DAA349;
+}
+
