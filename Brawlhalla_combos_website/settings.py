@@ -36,6 +36,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'characters',
+    'characters_db',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
