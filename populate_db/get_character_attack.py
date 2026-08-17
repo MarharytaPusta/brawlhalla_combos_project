@@ -1,17 +1,9 @@
-import os
-import django
 import requests
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Brawlhalla_combos_website.settings')
-
-django.setup()
 
 from characters_db.models import Character, Weapon
 
 
-def connect_to_api() -> requests.Response:
-    url = "https://api.brawlhalla.com/v1/static/legends"
-
+def connect_to_api(url : str) -> requests.Response:
     params = {
         "max_results" : 100
     }
@@ -54,8 +46,8 @@ def create_weapons_in_db(character : Character, character_info : dict) -> None:
     character.weapons.add(weapon2)
 
 
-def get_characters():
-    response = connect_to_api()
+def get_characters(url : str) -> None:
+    response = connect_to_api(url)
     if response is not None:
         fetch_all_legends_info(response)
         Weapon.objects.filter(name = "Fists").update(name = "Gauntlets")
