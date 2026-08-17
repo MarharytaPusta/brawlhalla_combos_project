@@ -2,6 +2,9 @@ import requests
 
 from characters_db.models import Character, Weapon
 
+weapon_fixed_names = {
+    "Fists": "Gauntlets",
+}
 
 def connect_to_api(url : str) -> requests.Response:
     params = {
@@ -37,20 +40,32 @@ def create_character_in_db(character_info : dict) -> Character:
     return character
 
 
+def get_correct_weapon_name(weapon_name : str) -> str | None:
+    if not weapon_name:
+        return None
+    if weapon_name in weapon_fixed_names:
+        return weapon_fixed_names[weapon_name]
+    else:
+        return weapon_name
+
+
 def create_weapons_in_db(character : Character, character_info : dict) -> None:
     weapon1 = character_info.get("weapon_one")
+    weapon1 = get_correct_weapon_name(weapon1)
     weapon2 = character_info.get("weapon_two")
-    weapon1, _ = Weapon.objects.get_or_create(name=weapon1)
-    weapon2, _ = Weapon.objects.get_or_create(name=weapon2)
-    character.weapons.add(weapon1)
-    character.weapons.add(weapon2)
+    weapon2 = get_correct_weapon_name(weapon2)
+    if weapon1:
+        weapon1, _ = Weapon.objects.get_or_create(name=weapon1)
+        weapon2, _ = Weapon.objects.get_or_create(name=weapon2)
+    if weapon2:
+        character.weapons.add(weapon1)
+        character.weapons.add(weapon2)
 
 
 def get_characters(url : str) -> None:
     response = connect_to_api(url)
     if response is not None:
         fetch_all_legends_info(response)
-        Weapon.objects.filter(name = "Fists").update(name = "Gauntlets")
 
 
 if __name__ == "__main__":
