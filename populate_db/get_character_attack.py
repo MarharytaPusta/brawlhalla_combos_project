@@ -62,7 +62,3 @@ def get_characters(url : str) -> None:
     response = connect_to_api(url)
     if response is not None:
         fetch_all_legends_info(response)
-
-
-if __name__ == "__main__":
-    get_characters()
