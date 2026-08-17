@@ -27,7 +27,8 @@ def fetch_all_legends_info(response : requests.Response) -> None:
             for character_info in characters_info:
                 try:
                     character = create_character_in_db(character_info)
-                    create_weapons_in_db(character, character_info)
+                    create_weapon_in_db(character, character_info, "weapon_one")
+                    create_weapon_in_db(character, character_info, "weapon_two")
                 except:
                     continue
 
@@ -49,17 +50,12 @@ def get_correct_weapon_name(weapon_name : str) -> str | None:
         return weapon_name
 
 
-def create_weapons_in_db(character : Character, character_info : dict) -> None:
-    weapon1 = character_info.get("weapon_one")
-    weapon1 = get_correct_weapon_name(weapon1)
-    weapon2 = character_info.get("weapon_two")
-    weapon2 = get_correct_weapon_name(weapon2)
-    if weapon1:
-        weapon1, _ = Weapon.objects.get_or_create(name=weapon1)
-        weapon2, _ = Weapon.objects.get_or_create(name=weapon2)
-    if weapon2:
+def create_weapon_in_db(character : Character, character_info : dict, name_of_weapon : str) -> None:
+    weapon = character_info.get(name_of_weapon)
+    weapon = get_correct_weapon_name(weapon)
+    if weapon:
+        weapon1, _ = Weapon.objects.get_or_create(name=weapon)
         character.weapons.add(weapon1)
-        character.weapons.add(weapon2)
 
 
 def get_characters(url : str) -> None:
