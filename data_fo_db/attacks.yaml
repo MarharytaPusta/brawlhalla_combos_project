@@ -1,0 +1,41 @@
+#handle missing attacks
+
+- name: neutral light
+  buttons: [c]
+
+- name: side light
+  buttons: [right arrow, c]
+
+- name: down light
+  buttons: [down arrow, c]
+
+- name: neutral signature
+  buttons: [x]
+
+- name: side signature
+  buttons: [right arrow, x]
+
+- name: down signature
+  buttons: [down arrow, c]
+
+- name: neutral aerial
+  buttons: [up arrow, c]
+
+- name: side aerial
+  buttons: [up arrow, right arrow, c]
+
+- name: down aerial
+  buttons: [up arrow, down arrow, c]
+
+- name: recovery
+  buttons: [up arrow, x]
+
+- name: ground pound
+  buttons: [up arrow, down arrow, x]
+
+- name: throw weapon
+  buttons: [v]
+
+- name: gravity cancel
+  buttons: [z]
+
