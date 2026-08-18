@@ -6,7 +6,7 @@ class Weapon(models.Model):
 
 class Character(models.Model):
     name = models.CharField(max_length=50, unique=True)
-    pic_url = models.URLField()
+    picture = models.ImageField(upload_to='character_static/images/legends/', null=True, blank=True)
 
     weapons = models.ManyToManyField(Weapon, related_name='characters')
 

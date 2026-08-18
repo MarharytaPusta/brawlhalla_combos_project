@@ -40,7 +40,7 @@ def create_character_in_db(character_info : dict) -> Character:
     name = character_info.get("bio_name")
     if not name:
         raise ValueError
-    character, _ = Character.objects.get_or_create(name=name, defaults={'pic_url': ''})
+    character, _ = Character.objects.get_or_create(name=name, defaults={'picture': ''})
     return character
 
 
