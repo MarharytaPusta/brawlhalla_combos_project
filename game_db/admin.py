@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Weapon, Character, Button, Attack, Combo, ComboAttack, AttackButton
+from .models import Weapon, Legend, Button, Attack, Combo, ComboAttack, AttackButton
 
 admin.site.register(Weapon)
-admin.site.register(Character)
+admin.site.register(Legend)
 admin.site.register(Button)
 admin.site.register(Attack)
 admin.site.register(Combo)
