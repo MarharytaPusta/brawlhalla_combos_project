@@ -39,3 +39,8 @@
 - name: gravity cancel
   buttons: [z]
 
+- name: dash
+  buttons: [z]
+
+- name: chase dodge
+  buttons: [z]

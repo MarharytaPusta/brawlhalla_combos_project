@@ -10,7 +10,7 @@ def get_buttons(button_names : list[str]) -> list[Button]:
     return buttons
 
 
-def connect_attack_with_buttons(attack, buttons):
+def connect_attack_with_buttons(attack, buttons) -> None:
     for i in range(len(buttons)):
         attack_button, _ = AttackButton.objects.get_or_create(
             attack=attack,
