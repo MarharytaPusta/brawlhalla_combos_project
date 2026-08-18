@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=50, unique=True)),
-                ('picture', models.ImageField(upload_to='character_static/images/buttons/')),
+                ('picture', models.ImageField(upload_to='brawlhalla_static/images/buttons/')),
             ],
         ),
         migrations.CreateModel(
@@ -45,8 +45,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('order', models.IntegerField()),
-                ('attack', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='characters_db.attack')),
-                ('button', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='characters_db.button')),
+                ('attack', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='game_db.attack')),
+                ('button', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='game_db.button')),
             ],
             options={
                 'ordering': ['order'],
@@ -55,15 +55,15 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='attack',
             name='buttons',
-            field=models.ManyToManyField(through='characters_db.AttackButton', to='characters_db.button'),
+            field=models.ManyToManyField(through='game_db.AttackButton', to='game_db.button'),
         ),
         migrations.CreateModel(
             name='ComboAttack',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('order', models.IntegerField()),
-                ('attack', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='characters_db.attack')),
-                ('combo', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='characters_db.combo')),
+                ('attack', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='game_db.attack')),
+                ('combo', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='game_db.combo')),
             ],
             options={
                 'ordering': ['order'],
@@ -72,12 +72,12 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='combo',
             name='attacks',
-            field=models.ManyToManyField(through='characters_db.ComboAttack', to='characters_db.attack'),
+            field=models.ManyToManyField(through='game_db.ComboAttack', to='game_db.attack'),
         ),
         migrations.AddField(
             model_name='combo',
             name='weapon',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='combos', to='characters_db.weapon'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='combos', to='game_db.weapon'),
         ),
         migrations.CreateModel(
             name='Character',
@@ -85,7 +85,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=50, unique=True)),
                 ('pic_url', models.URLField()),
-                ('weapons', models.ManyToManyField(related_name='characters', to='characters_db.weapon')),
+                ('weapons', models.ManyToManyField(related_name='characters', to='game_db.weapon')),
             ],
         ),
     ]

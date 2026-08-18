@@ -1,5 +1,5 @@
 import yaml
-from characters_db.models import Attack, Combo, ComboAttack, Weapon
+from game_db.models import Attack, Combo, ComboAttack, Weapon
 
 
 def get_attacks(attacks_names : list[str]) -> list[Attack]:

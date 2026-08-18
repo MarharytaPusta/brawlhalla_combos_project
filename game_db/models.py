@@ -4,16 +4,16 @@ class Weapon(models.Model):
     name = models.CharField(max_length=20, unique=True)
 
 
-class Character(models.Model):
+class Legend(models.Model):
     name = models.CharField(max_length=50, unique=True)
-    picture = models.ImageField(upload_to='character_static/images/legends/', null=True, blank=True)
+    picture = models.ImageField(upload_to='brawlhalla_static/images/legends/', null=True, blank=True)
 
-    weapons = models.ManyToManyField(Weapon, related_name='characters')
+    weapons = models.ManyToManyField(Weapon, related_name='legends')
 
 
 class Button(models.Model):
     name = models.CharField(max_length=50, unique=True)
-    picture = models.ImageField(upload_to='character_static/images/buttons/')
+    picture = models.ImageField(upload_to='brawlhalla_static/images/buttons/')
 
 
 class Attack(models.Model):

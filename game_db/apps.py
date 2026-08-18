@@ -3,4 +3,4 @@ from django.apps import AppConfig
 
 class CharactersDbConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'characters_db'
+    name = 'game_db'

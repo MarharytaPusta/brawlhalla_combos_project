@@ -1,5 +1,5 @@
 import yaml
-from characters_db.models import Button
+from game_db.models import Button
 
 
 def load_buttons_from_yaml(file_name: str) -> None:

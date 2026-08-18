@@ -1,5 +1,5 @@
 import yaml
-from characters_db.models import Attack, Button, AttackButton
+from game_db.models import Attack, Button, AttackButton
 
 
 def get_buttons(button_names : list[str]) -> list[Button]:

@@ -1,23 +1,23 @@
 - name: c
-  picture: character_static/images/buttons/letter-c.png
+  picture: brawlhalla_static/images/buttons/letter-c.png
 
 - name: x
-  picture: character_static/images/buttons/letter-x.png
+  picture: brawlhalla_static/images/buttons/letter-x.png
 
 - name: z
-  picture: character_static/images/buttons/letter-z.png
+  picture: brawlhalla_static/images/buttons/letter-z.png
 
 - name: v
-  picture: character_static/images/buttons/letter-v.png
+  picture: brawlhalla_static/images/buttons/letter-v.png
 
 - name: down arrow
-  picture: character_static/images/buttons/down.png
+  picture: brawlhalla_static/images/buttons/down.png
 
 - name: up arrow
-  picture: character_static/images/buttons/up.png
+  picture: brawlhalla_static/images/buttons/up.png
 
 - name: left arrow
-  picture: character_static/images/buttons/left.png
+  picture: brawlhalla_static/images/buttons/left.png
 
 - name: right arrow
-  picture: character_static/images/buttons/right.png
+  picture: brawlhalla_static/images/buttons/right.png

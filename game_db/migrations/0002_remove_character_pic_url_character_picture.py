@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('characters_db', '0001_initial'),
+        ('game_db', '0001_initial'),
     ]
 
     operations = [
@@ -17,6 +17,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='character',
             name='picture',
-            field=models.ImageField(blank=True, null=True, upload_to='character_static/images/legends/'),
+            field=models.ImageField(blank=True, null=True, upload_to='brawlhalla_static/images/legends/'),
         ),
     ]
