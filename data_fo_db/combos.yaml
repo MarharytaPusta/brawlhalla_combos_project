@@ -1,0 +1,507 @@
+# Bow
+
+
+- weapon: Bow
+  attacks: [neutral light, neutral aerial]
+
+- weapon: Bow
+  attacks: [side light, down light]
+
+- weapon: Bow
+  attacks: [side light, side aerial]
+
+- weapon: Bow
+  attacks: [side light, neutral light]
+
+- weapon: Bow
+  attacks: [down light, neutral light]
+
+- weapon: Bow
+  attacks: [down light, neutral aerial]
+
+- weapon: Bow
+  attacks: [down light, recovery]
+
+- weapon: Bow
+  attacks: [down aerial, neutral light]
+
+- weapon: Bow
+  attacks: [down aerial, side aerial]
+
+- weapon: Bow
+  attacks: [down aerial, side light]
+
+
+
+# Hammer
+
+
+
+- weapon: Hammer
+  attacks: [down light, gravity cancel, neutral light]
+
+- weapon: Hammer
+  attacks: [down light, down aerial]
+
+- weapon: Hammer
+  attacks: [down light, recovery]
+
+- weapon: Hammer
+  attacks: [down light, side light]
+
+- weapon: Hammer
+  attacks: [down light, side aerial]
+
+- weapon: Hammer
+  attacks: [down light, neutral aerial]
+
+- weapon: Hammer
+  attacks: [down light, recovery]
+
+- weapon: Hammer
+  attacks: [down light, side light]
+
+- weapon: Hammer
+  attacks: [side light, neutral light]
+
+- weapon: Hammer
+  attacks: [neutral aerial, recovery]
+
+- weapon: Hammer
+  attacks: [down aerial, recovery]
+
+- weapon: Hammer
+  attacks: [recovery, neutral light]
+
+- weapon: Hammer
+  attacks: [recovery, down aerial]
+
+- weapon: Hammer
+  attacks: [recovery, neutral light]
+
+
+
+# Sword
+
+
+
+- weapon: Sword
+  attacks: [neutral aerial, recovery]
+
+- weapon: Sword
+  attacks: [down light, gravity cancel, neutral light]
+
+- weapon: Sword
+  attacks: [down light, recovery]
+
+- weapon: Sword
+  attacks: [down light, gravity cancel, side light]
+
+- weapon: Sword
+  attacks: [down light, side aerial]
+
+- weapon: Sword
+  attacks: [down light, neutral aerial]
+
+- weapon: Sword
+  attacks: [down light, down aerial]
+
+- weapon: Sword
+  attacks: [down light, ground pound]
+
+- weapon: Sword
+  attacks: [side light, neutral light]
+
+- weapon: Sword
+  attacks: [down aerial, neutral light]
+
+- weapon: Sword
+  attacks: [side aerial, neutral light]
+
+- weapon: Sword
+  attacks: [ground pound, gravity cancel, neutral light]
+
+
+
+# Blasters
+
+
+
+- weapon: Blasters
+  attacks: [down light, neutral light]
+
+- weapon: Blasters
+  attacks: [down light, neutral aerial]
+
+- weapon: Blasters
+  attacks: [down light, recovery]
+
+- weapon: Blasters
+  attacks: [down light, side light]
+
+- weapon: Blasters
+  attacks: [down light, side aerial]
+
+- weapon: Blasters
+  attacks: [down light, down aerial]
+
+- weapon: Blasters
+  attacks: [side light, neutral aerial]
+
+- weapon: Blasters
+  attacks: [side light, down light]
+
+- weapon: Blasters
+  attacks: [neutral aerial, neutral aerial]
+
+- weapon: Blasters
+  attacks: [neutral aerial, recovery]
+
+- weapon: Blasters
+  attacks: [down aerial, recovery]
+
+- weapon: Blasters
+  attacks: [side aerial, neutral light]
+
+- weapon: Blasters
+  attacks: [side aerial, down light]
+
+- weapon: Blasters
+  attacks: [side aerial, side light]
+
+- weapon: Blasters
+  attacks: [side aerial, neutral aerial]
+
+- weapon: Blasters
+  attacks: [side aerial, recovery]
+
+
+
+# Rocket Lance
+
+
+
+- weapon: Rocket Lance
+  attacks: [side light, neutral light]
+
+- weapon: Rocket Lance
+  attacks: [side light, neutral aerial]
+
+- weapon: Rocket Lance
+  attacks: [side light, down aerial]
+
+- weapon: Rocket Lance
+  attacks: [side light, side aerial]
+
+- weapon: Rocket Lance
+  attacks: [side light, recovery]
+
+- weapon: Rocket Lance
+  attacks: [down aerial, neutral light]
+
+- weapon: Rocket Lance
+  attacks: [down aerial, down light]
+
+- weapon: Rocket Lance
+  attacks: [down aerial, side light]
+
+
+
+# Spear
+
+
+
+- weapon: Spear
+  attacks: [down light, side aerial]
+
+- weapon: Spear
+  attacks: [down light, neutral aerial]
+
+- weapon: Spear
+  attacks: [down light, recovery]
+
+- weapon: Spear
+  attacks: [side light, neutral light]
+
+- weapon: Spear
+  attacks: [side aerial, neutral light]
+
+
+
+# Katars
+
+
+
+- weapon: Katars
+  attacks: [neutral light, down light]
+
+- weapon: Katars
+  attacks: [side light, down light]
+
+- weapon: Katars
+  attacks: [side light, neutral light]
+
+- weapon: Katars
+  attacks: [down aerial, down light]
+
+- weapon: Katars
+  attacks: [side aerial, down light]
+
+- weapon: Katars
+  attacks: [side aerial, neutral light]
+
+- weapon: Katars
+  attacks: [ground pound, gravity cancel, down light]
+
+- weapon: Katars
+  attacks: [recovery, gravity cancel, down light]
+
+
+
+# Axe
+
+
+
+- weapon: Axe
+  attacks: [side light, down light]
+
+- weapon: Axe
+  attacks: [side light, neutral aerial]
+
+- weapon: Axe
+  attacks: [side light, down aerial]
+
+- weapon: Axe
+  attacks: [side light, side aerial]
+
+- weapon: Axe
+  attacks: [side light, ground pound]
+
+- weapon: Axe
+  attacks: [neutral aerial, down light]
+
+- weapon: Axe
+  attacks: [neutral aerial, gravity cancel, down light]
+
+- weapon: Axe
+  attacks: [down aerial, down light]
+
+- weapon: Axe
+  attacks: [down aerial, neutral light]
+
+
+
+# Gauntlets
+
+
+
+- weapon: Gauntlets
+  attacks: [down light, neutral light]
+
+- weapon: Gauntlets
+  attacks: [down light, side light]
+
+- weapon: Gauntlets
+  attacks: [down light, down aerial]
+
+- weapon: Gauntlets
+  attacks: [down light, neutral aerial]
+
+- weapon: Gauntlets
+  attacks: [down light, recovery]
+
+- weapon: Gauntlets
+  attacks: [down light, side aerial]
+
+- weapon: Gauntlets
+  attacks: [neutral aerial, gravity cancel, neutral light]
+
+- weapon: Gauntlets
+  attacks: [neutral aerial, gravity cancel, side light]
+
+- weapon: Gauntlets
+  attacks: [neutral aerial, down aerial]
+
+- weapon: Gauntlets
+  attacks: [neutral aerial, recovery]
+
+- weapon: Gauntlets
+  attacks: [neutral aerial, side aerial]
+
+- weapon: Gauntlets
+  attacks: [down aerial, neutral light]
+
+- weapon: Gauntlets
+  attacks: [side aerial, neutral light]
+
+- weapon: Gauntlets
+  attacks: [recovery, neutral light]
+
+- weapon: Gauntlets
+  attacks: [ground pound, neutral light]
+
+
+
+# Scythe
+
+
+
+- weapon: Scythe
+  attacks: [neutral aerial, side aerial]
+
+- weapon: Scythe
+  attacks: [side aerial, side light]
+
+- weapon: Scythe
+  attacks: [recovery, neutral aerial]
+
+- weapon: Scythe
+  attacks: [recovery, side light]
+
+
+
+# Cannon
+
+
+
+- weapon: Cannon
+  attacks: [neutral light, side aerial]
+
+- weapon: Cannon
+  attacks: [neutral light, down aerial]
+
+- weapon: Cannon
+  attacks: [neutral light, side aerial, neutral light]
+
+- weapon: Cannon
+  attacks: [down light, gravity cancel, down aerial]
+
+- weapon: Cannon
+  attacks: [down light, gravity cancel, neutral aerial]
+
+- weapon: Cannon
+  attacks: [down light, side light,]
+
+- weapon: Cannon
+  attacks: [down light, down aerial]
+
+- weapon: Cannon
+  attacks: [side light, gravity cancel, side aerial]
+
+- weapon: Cannon
+  attacks: [side light, down light]
+
+- weapon: Cannon
+  attacks: [side aerial, neutral light]
+
+
+
+# Orb
+
+
+
+- weapon: Orb
+  attacks: [down light, neutral aerial]
+
+- weapon: Orb
+  attacks: [down light, side aerial]
+
+- weapon: Orb
+  attacks: [side light, down light]
+
+- weapon: Orb
+  attacks: [side light, side aerial]
+
+- weapon: Orb
+  attacks: [down aerial, side light]
+
+- weapon: Orb
+  attacks: [side aerial, side light]
+
+
+
+# Greatsword
+
+
+
+- weapon: Greatsword
+  attacks: [neutral light, side light]
+
+- weapon: Greatsword
+  attacks: [side light, gravity cancel, side light]
+
+- weapon: Greatsword
+  attacks: [side light, down light]
+
+- weapon: Greatsword
+  attacks: [side light, neutral light]
+
+- weapon: Greatsword
+  attacks: [side light, down light, dash, neutral light]
+
+
+# Boots
+
+
+- weapon: Boots
+  attacks: [down light, side light]
+
+- weapon: Boots
+  attacks: [down light, neutral light]
+
+- weapon: Boots
+  attacks: [down light, neutral aerial]
+
+- weapon: Boots
+  attacks: [down light, side aerial]
+
+- weapon: Boots
+  attacks: [down light, recovery]
+
+- weapon: Boots
+  attacks: [down light, chase dodge, down aerial]
+
+- weapon: Boots
+  attacks: [down light, recovery]
+
+- weapon: Boots
+  attacks: [down light, gravity cancel, neutral light]
+
+- weapon: Boots
+  attacks: [down light, gravity cancel, side light]
+
+- weapon: Boots
+  attacks: [down light, ground pound]
+
+- weapon: Boots
+  attacks: [side light, neutral light]
+
+- weapon: Boots
+  attacks: [side light, side light]
+
+- weapon: Boots
+  attacks: [neutral aerial, side aerial]
+
+- weapon: Boots
+  attacks: [neutral aerial, recovery]
+
+- weapon: Boots
+  attacks: [side aerial, neutral light]
+
+
+
+# Chakram
+
+
+
+- weapon: Chakram
+  attacks: [side light, neutral light]
+
+- weapon: Chakram
+  attacks: [side light, down light]
+
+- weapon: Chakram
+  attacks: [side aerial, neutral light]
+
+- weapon: Chakram
+  attacks: [down light, neutral aerial, side aerial]
