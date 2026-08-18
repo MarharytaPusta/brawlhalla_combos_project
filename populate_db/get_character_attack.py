@@ -4,6 +4,9 @@ from characters_db.models import Character, Weapon
 
 weapon_fixed_names = {
     "Fists": "Gauntlets",
+    "Pistol": "Blasters",
+    "RocketLance": "Rocket Lance",
+    "Katar" : "Katars"
 }
 
 def connect_to_api(url : str) -> requests.Response:
