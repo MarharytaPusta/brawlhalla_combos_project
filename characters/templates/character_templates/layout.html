@@ -6,8 +6,8 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href ='{% static "character_static/css/styles.css" %}'>
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href ='{% static "brawlhalla_static/css/styles.css" %}'>
 </head>
 <body>
     <div class="left-side">
@@ -25,6 +25,9 @@
         <p></p>
         <div class="weapon-with-combos">
             <h2>{% block weapon2 %} {% endblock %}</h2>
+            <ul class="list">
+                {% block combos2 %} {% endblock %}
+            </ul>
         </div>
     </div>
 </body>

@@ -1,23 +1,28 @@
 {% extends "character_templates/layout.html" %}
 {% load static %}
 
-{% block name %} Ember {% endblock %}
+{% block title %} {{legend_name}} {% endblock %}
+{% block name %} {{legend_name}} {% endblock %}
 
 {% block image %}
-<img src="{% static 'character_static/images/Ember.webp' %}" alt = "">
+    <img src="{% static legend_picture.name %}"
+         alt="{{ legend_name }}"
+         onerror="this.onerror=null; this.src='{% static 'brawlhalla_static/images/legends_images/Random.webp' %}';">
 {% endblock %}
 
+{% block weapon1 %}{{weapon1}} Combos ▲{% endblock %}
 
 {% block combos1 %}
-<li>neutral light + neutral aerial</li>
-<li>neutral light + neutral aerial</li>
-<li>neutral light + neutral aerial</li>
-<li>neutral light + neutral aerial</li>
-<li>neutral light + neutral aerial</li>
-<li>neutral light + neutral aerial</li>
-<li>neutral light + neutral aerial</li>
+{% for combo in combos1 %}
+    <li>{{ combo.get_all_attacks }}</li>
+{% endfor %}
 {% endblock %}
 
-{% block weapon1 %}Bow Combos ▲{% endblock %}
 
-{% block weapon2 %}Katars Combos ▼{% endblock %}
+{% block weapon2 %}{{weapon2}} Combos ▼{% endblock %}
+
+{% block combos2 %}
+{% for combo in combos2 %}
+    <li>{{ combo.get_all_attacks }}</li>
+{% endfor %}
+{% endblock %}

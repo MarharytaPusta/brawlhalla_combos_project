@@ -29,6 +29,20 @@ class Combo(models.Model):
     attacks = models.ManyToManyField(Attack, through='ComboAttack')
 
 
+    def get_all_attacks(self):
+        steps = ComboAttack.objects.filter(combo=self)
+
+        steps_with_attacks = steps.select_related('attack')
+
+        sorted_steps = steps_with_attacks.order_by('order')
+
+        attack_names = []
+        for step in sorted_steps:
+            attack_names.append(step.attack.name)
+
+        return " ➔ ".join(attack_names)
+
+
 class ComboAttack(models.Model):
     combo = models.ForeignKey(Combo, on_delete=models.CASCADE)
     attack = models.ForeignKey(Attack, on_delete=models.CASCADE)
