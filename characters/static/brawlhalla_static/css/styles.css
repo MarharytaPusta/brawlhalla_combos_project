@@ -1,19 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Jomhuria&display=swap');
+
 body {
     background: url("../images/blue-background.avif");
     background-size: cover;
     color: #DAA349;
+    font-family: 'Inter', sans-serif;
 }
 
 .left-side {
+    position: sticky;
+    top: 0;
     float: left;
     width: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
+
 }
 
-.left-side b{
-    font-size: 5vw;
+.left-side b {
+    font-family: 'Jomhuria', sans-serif;
+    font-size: 9vw;
+    font-weight: normal;
+    background-image: linear-gradient(#DCBE5E, #DC1431);
+    color: transparent;
+    background-clip: text;
+    -webkit-text-stroke: 1px black;
+    filter: drop-shadow(0px 4px 0px rgba(0, 0, 0, 1));
 }
 
 .left-side img {
@@ -28,12 +41,12 @@ body {
 }
 
 .right-side h2{
-    font-size: 3.7vw;
+    font-size: 3.5vw;
     margin-bottom: 20px
 }
 
 .right-side li{
-    font-size: 2.8vw;
+    font-size: 2.5vw;
 }
 
 .weapon-with-combos {
