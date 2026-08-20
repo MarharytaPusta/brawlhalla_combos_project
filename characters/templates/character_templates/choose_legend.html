@@ -1,0 +1,12 @@
+{% extends "character_templates/choose_legend_layout.html" %}
+{% load static %}
+
+{% block title %} Choosing of legend {% endblock %}
+
+{% block main_text %} Choose legend and get their combos {% endblock %}
+
+{% block characters %}
+    {% for legend in legends %}
+        <li><a href="/{{ legend.name }}">{{ legend.name }}</a></li>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Jomhuria&display=swap');
+
+body {
+    background: url("../images/blue-background.avif");
+    background-size: cover;
+    color: #2ff0dd;
+    font-family: 'Jomhuria', sans-serif;
+}
+
+p {
+    font-size: 9vw;
+    text-align: center;
+    margin: 1vw;
+}
+
+a {
+    font-size: 5vw;
+    text-decoration-thickness: 0.14vw;
+}
+
+a:link {
+    color: #e8c064
+}
+
+a:visited {
+    color: #2ff0dd
+}
+
+li::marker {
+  font-size: 4vw;
+  color: #e8c064;
+}
+
+ul {
+  column-count: 3;
+  column-gap: 20px;
+}

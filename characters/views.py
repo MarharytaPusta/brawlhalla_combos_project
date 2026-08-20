@@ -4,8 +4,13 @@ from game_db.models import Legend, Weapon, Combo, ComboAttack
 
 
 
-def combos(request):
-    return render(request,'character_templates/character.html')
+def all_legends(request):
+    legends = Legend.objects.all()
+    legends = legends.order_by('name')
+    dict_of_values = {
+        "legends" : legends,
+    }
+    return render(request,'character_templates/choose_legend.html', dict_of_values)
 
 
 def get_all_legend_info(request, legend_name):
@@ -25,4 +30,4 @@ def get_all_legend_info(request, legend_name):
         "combos2" : combos_for_weapon_2,
     }
 
-    return render(request,'character_templates/character.html', dict_of_values)
+    return render(request,'character_templates/legend.html', dict_of_values)
