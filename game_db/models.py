@@ -21,6 +21,15 @@ class Attack(models.Model):
 
     buttons = models.ManyToManyField(Button, through='AttackButton')
 
+    def get_all_buttons(self):
+        buttons = AttackButton.objects.filter(button=self)
+        buttons_with_attacks = buttons.select_related('button')
+        sorted_buttons = buttons_with_attacks.order_by('order')
+        buttons_names = []
+        for button in sorted_buttons:
+            buttons_names.append(button.button.name)
+        return ' '.join(buttons_names)
+
 
 class Combo(models.Model):
 
