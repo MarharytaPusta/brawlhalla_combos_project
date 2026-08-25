@@ -35,31 +35,36 @@
             const attacksData = JSON.parse('{{ json_buttons_to_attack|escapejs }}');
             const rawImagesData = JSON.parse('{{ json_buttons_pictures|escapejs }}');
 
-            const buttonImagesData = {};
-            for (const key in rawImagesData) {
-                buttonImagesData[key.toLowerCase().trim()] = rawImagesData[key];
-            }
-
-            const popover = document.getElementById('popover');
+            const tooltip = document.getElementById('tooltip');
             const staticBaseUrl = "{% static '' %}";
 
-            document.addEventListener('mousedown', () => {
-                if (popover) popover.classList.remove('show');
+            const comboItems = document.querySelectorAll('.list li');
+
+            const attackNames = Object.keys(attacksData).sort((a, b) => b.length - a.length);
+
+            comboItems.forEach(item => {
+                let html = item.innerHTML;
+
+                attackNames.forEach(attack => {
+                    const regex = new RegExp(`\\b(${attack})\\b`, 'gi');
+                    html = html.replace(regex, `<span class="attack-hint" data-attack="${attack}">$1</span>`);
+                });
+
+                item.innerHTML = html;
             });
 
-            document.addEventListener('mouseup', () => {
-                const selection = window.getSelection();
-                const selectedText = selection.toString().trim().toLowerCase();
+            document.addEventListener('mouseover', (e) => {
+                const target = e.target.closest('.attack-hint');
+                if (!target) return;
 
-                if (selectedText.length > 0 && attacksData[selectedText]) {
+                const attackKey = target.getAttribute('data-attack');
+                const rawButtonsText = attacksData[attackKey];
 
-                    const rawButtonsText = attacksData[selectedText];
-
-                    const buttonNames = rawButtonsText.split('➔').map(btn => btn.trim().toLowerCase());
+                if (rawButtonsText) {
+                    const buttonNames = rawButtonsText.split('➔').map(btn => btn.trim());
 
                     const imagesHtml = buttonNames.map(btnName => {
-                        const imagePath = buttonImagesData[btnName];
-
+                        const imagePath = rawImagesData[btnName];
                         if (imagePath) {
                             const cleanPath = imagePath.startsWith('/') ? imagePath.slice(1) : imagePath;
                             return `<img src="${staticBaseUrl}${cleanPath}" alt="${btnName}" class="button-icon">`;
@@ -68,19 +73,23 @@
                         }
                     }).join(' ');
 
-                    popover.innerHTML = `<span class="combo-container">${imagesHtml}</span>`;
+                    tooltip.innerHTML = `<span class="combo-container">${imagesHtml}</span>`;
 
-                    const range = selection.getRangeAt(0);
-                    const rect = range.getBoundingClientRect();
+                    const rect = target.getBoundingClientRect();
+                    const tooltipX = rect.left + window.scrollX + (rect.width / 2);
+                    const tooltipY = rect.top + window.scrollY - 5;
 
-                    const popoverX = rect.left + window.scrollX + (rect.width / 2);
-                    const popoverY = rect.top + window.scrollY - 10;
+                    tooltip.style.left = `${tooltipX}px`;
+                    tooltip.style.top = `${tooltipY}px`;
+                    tooltip.style.transform = 'translate(-50%, -100%)';
 
-                    popover.style.left = `${popoverX}px`;
-                    popover.style.top = `${popoverY}px`;
-                    popover.style.transform = 'translate(-50%, -100%)';
+                    tooltip.classList.add('show');
+                }
+            });
 
-                    popover.classList.add('show');
+            document.addEventListener('mouseout', (e) => {
+                if (e.target.closest('.attack-hint')) {
+                    tooltip.classList.remove('show');
                 }
             });
         });
