@@ -26,3 +26,72 @@
     <li>{{ combo.get_all_attacks }}</li>
 {% endfor %}
 {% endblock %}
+
+
+
+{% block extra_js %}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const attacksData = JSON.parse('{{ json_buttons_to_attack|escapejs }}');
+            const rawImagesData = JSON.parse('{{ json_buttons_pictures|escapejs }}');
+
+            const tooltip = document.getElementById('tooltip');
+            const staticBaseUrl = "{% static '' %}";
+
+            const comboItems = document.querySelectorAll('.list li');
+
+            const attackNames = Object.keys(attacksData).sort((a, b) => b.length - a.length);
+
+            comboItems.forEach(item => {
+                let html = item.innerHTML;
+
+                attackNames.forEach(attack => {
+                    const regex = new RegExp(`\\b(${attack})\\b`, 'gi');
+                    html = html.replace(regex, `<span class="attack-hint" data-attack="${attack}">$1</span>`);
+                });
+
+                item.innerHTML = html;
+            });
+
+            document.addEventListener('mouseover', (e) => {
+                const target = e.target.closest('.attack-hint');
+                if (!target) return;
+
+                const attackKey = target.getAttribute('data-attack');
+                const rawButtonsText = attacksData[attackKey];
+
+                if (rawButtonsText) {
+                    const buttonNames = rawButtonsText.split('➔').map(btn => btn.trim());
+
+                    const imagesHtml = buttonNames.map(btnName => {
+                        const imagePath = rawImagesData[btnName];
+                        if (imagePath) {
+                            const cleanPath = imagePath.startsWith('/') ? imagePath.slice(1) : imagePath;
+                            return `<img src="${staticBaseUrl}${cleanPath}" alt="${btnName}" class="button-icon">`;
+                        } else {
+                            return `<b>${btnName}</b>`;
+                        }
+                    }).join(' ');
+
+                    tooltip.innerHTML = `<span class="combo-container">${imagesHtml}</span>`;
+
+                    const rect = target.getBoundingClientRect();
+                    const tooltipX = rect.left + window.scrollX + (rect.width / 2);
+                    const tooltipY = rect.top + window.scrollY - 5;
+
+                    tooltip.style.left = `${tooltipX}px`;
+                    tooltip.style.top = `${tooltipY}px`;
+                    tooltip.style.transform = 'translate(-50%, -100%)';
+
+                    tooltip.classList.add('show');
+                }
+            });
+
+            document.addEventListener('mouseout', (e) => {
+                if (e.target.closest('.attack-hint')) {
+                    tooltip.classList.remove('show');
+                }
+            });
+        });
+    </script>
+{% endblock extra_js %}

@@ -64,3 +64,38 @@ body {
     background-color: #DAA349;
 }
 
+.tooltip {
+    position: absolute;
+    background-color: #8EAEDF;
+    color: #fff;
+    padding: 8px 8px;
+    border-radius: 6px;
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 1000;
+
+    pointer-events: none;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tooltip.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.button-icon {
+    height: 50px;
+    vertical-align: middle;
+    margin: 0 4px;
+    border-radius: 4px;
+}
+
+.combo-container {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 8px;
+}
