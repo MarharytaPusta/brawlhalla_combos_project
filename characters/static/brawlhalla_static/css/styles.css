@@ -64,3 +64,10 @@ body {
     background-color: #DAA349;
 }
 
+.collapsible {
+  cursor: pointer;
+}
+
+.content {
+  display: none;
+}

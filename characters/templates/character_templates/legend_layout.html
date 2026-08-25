@@ -17,18 +17,19 @@
     </div>
     <div class="right-side">
         <div class="weapon-with-combos">
-            <h2>{% block weapon1 %} {% endblock %}</h2>
-            <ul class="list">
+            <h2 class="collapsible">{% block weapon1 %} {% endblock %}</h2>
+            <ul class="content list">
                 {% block combos1 %} {% endblock %}
             </ul>
         </div>
         <p></p>
         <div class="weapon-with-combos">
-            <h2>{% block weapon2 %} {% endblock %}</h2>
-            <ul class="list">
+            <h2 class="collapsible">{% block weapon2 %} {% endblock %}</h2>
+            <ul class="content list">
                 {% block combos2 %} {% endblock %}
             </ul>
         </div>
     </div>
+    {% block collapsible_lists_js %} {% endblock %}
 </body>
 </html>
