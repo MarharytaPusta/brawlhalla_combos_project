@@ -10,7 +10,7 @@
          onerror="this.onerror=null; this.src='{% static 'brawlhalla_static/images/legends_images/Random.webp' %}';">
 {% endblock %}
 
-{% block weapon1 %}{{weapon1}} Combos ▲{% endblock %}
+{% block weapon1 %}{{weapon1}} Combos ▼{% endblock %}
 
 {% block combos1 %}
 {% for combo in combos1 %}
@@ -95,3 +95,27 @@
         });
     </script>
 {% endblock extra_js %}
+{% block collapsible_lists_js %}
+    <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+              content.style.display = "none";
+
+            } else {
+              content.style.display = "block";
+            }
+            if (this.textContent.includes("▼")) {
+                this.textContent = this.textContent.replace("▼", "▲");
+            } else if (this.textContent.includes("▲")) {
+                this.textContent = this.textContent.replace("▲", "▼");
+            }
+          });
+        }
+    </script>
+{% endblock %}
