@@ -1,0 +1,26 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href ='{% static "user_static/css/user.css" %}'>
+</head>
+<body>
+
+    <h2 class="hi" > User Registration </h2>
+        <label>Email:</label>
+        <input type="email" class="ok form-control" id="email" name="email" placeholder="Enter email" >
+        <p></p>
+        <label>Password:</label>
+        <input class="ok" type="password" class="form-control" id="password" name="password" placeholder="Enter password" >
+        <button class="btn" type="submit" class="btn btn-primary">Register</button>
+        <p class="bottom">Already have an account?  <a class="bottom" href="/user/login/"> Login here</a></p>
+    </form>
+
+
+</body>
+</html>
