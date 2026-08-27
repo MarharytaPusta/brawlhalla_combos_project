@@ -1,4 +1,12 @@
 {% extends "user_templates/user_layout.html" %}
 {% load static %}
 
-{% block title %} registration {% endblock %}
+{% block title %} registration {% endblock title%}
+
+{% block main_text %} User Registration {% endblock main_text %}
+
+{% block submit_name %} Register {% endblock submit_name %}
+
+{% block another_page_text %} Already have an account? {% endblock another_page_text %}
+
+{% block another_page %} <a class="bottom" href="/user/login/"> Login here</a> {% endblock another_page %}

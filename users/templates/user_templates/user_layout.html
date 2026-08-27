@@ -11,14 +11,17 @@
 </head>
 <body>
 
-    <h2 class="hi" > User Registration </h2>
+    <h2 class="hi" > {% block main_text %} {% endblock main_text %} </h2>
+    <div class="field">
         <label>Email:</label>
         <input type="email" class="ok form-control" id="email" name="email" placeholder="Enter email" >
-        <p></p>
+    </div>
+    <div class="field">
         <label>Password:</label>
         <input class="ok" type="password" class="form-control" id="password" name="password" placeholder="Enter password" >
-        <button class="btn" type="submit" class="btn btn-primary">Register</button>
-        <p class="bottom">Already have an account?  <a class="bottom" href="/user/login/"> Login here</a></p>
+    </div>
+        <button class="btn" type="submit">{% block submit_name %} {% endblock submit_name %}</button>
+        <p class="bottom">{% block another_page_text %} {% endblock another_page_text %}  {% block another_page %} {% endblock another_page %}</p>
     </form>
 
 
