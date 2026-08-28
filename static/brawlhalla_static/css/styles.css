@@ -98,6 +98,7 @@ body {
     display: inline-flex;
     align-items: center;
     margin-left: 8px;
+}
 
 .collapsible {
   cursor: pointer;

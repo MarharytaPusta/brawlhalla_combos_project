@@ -10,20 +10,26 @@
     <link rel="stylesheet" href ='{% static "user_static/css/user.css" %}'>
 </head>
 <body>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
 
-    <h2 class="hi" > {% block main_text %} {% endblock main_text %} </h2>
-    <div class="field">
-        <label>Email:</label>
-        <input type="email" class="ok form-control" id="email" name="email" placeholder="Enter email" >
-    </div>
-    <div class="field">
-        <label>Password:</label>
-        <input class="ok" type="password" class="form-control" id="password" name="password" placeholder="Enter password" >
-    </div>
+        <h2 class="hi" > {% block main_text %} {% endblock main_text %} </h2>
+        {% block if_registration_username%} {% endblock if_registration_username%}
+        <div class="field">
+            <label>Email:</label>
+            <input type="email" class="ok form-control" id="email" name="email" placeholder="Enter email" >
+        </div>
+        <div class="field">
+            <label>Password:</label>
+            <input class="ok" type="password" class="form-control" id="password" name="password1" placeholder="Enter password" >
+        </div>
+        {% block if_registration_password2%} {% endblock if_registration_password2%}
         <button class="btn" type="submit">{% block submit_name %} {% endblock submit_name %}</button>
         <p class="bottom">{% block another_page_text %} {% endblock another_page_text %}  {% block another_page %} {% endblock another_page %}</p>
+        <div style="color: red; font-weight: bold;">
+            {{ form.errors }}
+        </div>
     </form>
-
 
 </body>
 </html>

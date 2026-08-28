@@ -1,9 +1,24 @@
 {% extends "user_templates/user_layout.html" %}
 {% load static %}
 
+
 {% block title %} registration {% endblock title%}
 
 {% block main_text %} User Registration {% endblock main_text %}
+
+{% block if_registration_username %}
+    <div class="field">
+        <label>Username:</label>
+        <input class="ok" type="username" class="form-control" id="username" name="username" placeholder="Enter username" >
+    </div>
+{% endblock if_registration_username %}
+
+{% block if_registration_password2%}
+    <div class="field">
+        <label>Confirm:</label>
+        <input class="ok" type="password" class="form-control" id="password2" name="password2" placeholder="Enter password" >
+    </div>
+{% endblock if_registration_password2%}
 
 {% block submit_name %} Register {% endblock submit_name %}
 
