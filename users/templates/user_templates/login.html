@@ -1,0 +1,19 @@
+{% extends "user_templates/user_layout.html" %}
+{% load static %}
+
+{% block title %} login {% endblock title%}
+
+{% block main_text %} User Login {% endblock main_text %}
+
+{% block password1 %}
+    <div class="field">
+        <label>Password:</label>
+        <input class="ok" type="password" class="form-control" id="password" name="password" placeholder="Enter password" >
+    </div>
+{% endblock password1 %}
+
+{% block submit_name %} Login {% endblock submit_name %}
+
+{% block another_page_text %} Do not have an account? {% endblock another_page_text %}
+
+{% block another_page %} <a class="bottom" href="/user/register/"> Register here</a> {% endblock another_page %}

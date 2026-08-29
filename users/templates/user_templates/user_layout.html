@@ -1,0 +1,33 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href ='{% static "user_static/css/user.css" %}'>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <h2 class="hi" > {% block main_text %} {% endblock main_text %} </h2>
+        {% block if_registration_username%} {% endblock if_registration_username%}
+        <div class="field">
+            <label>Username:</label>
+            <input class="ok" type="username" class="form-control" id="username" name="username" placeholder="Enter username" >
+        </div>
+
+        {% block password1 %} {% endblock password1 %}
+        {% block if_registration_password2 %} {% endblock if_registration_password2 %}
+        <button class="btn" type="submit">{% block submit_name %} {% endblock submit_name %}</button>
+        <p class="bottom">{% block another_page_text %} {% endblock another_page_text %}  {% block another_page %} {% endblock another_page %}</p>
+        <div style="color: red; font-weight: bold;">
+            {{ form.errors }}
+        </div>
+    </form>
+
+</body>
+</html>

@@ -6,7 +6,7 @@ class Weapon(models.Model):
 
 class Legend(models.Model):
     name = models.CharField(max_length=50, unique=True)
-    picture = models.ImageField(upload_to='brawlhalla_static/images/legends/', null=True, blank=True)
+    picture = models.ImageField(upload_to='brawlhalla_static/images/legends_images/', null=True, blank=True)
 
     weapons = models.ManyToManyField(Weapon, related_name='legends')
 

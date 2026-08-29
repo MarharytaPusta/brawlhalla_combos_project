@@ -1,0 +1,44 @@
+body{
+    display: grid;
+    place-items: center;
+    background: url("../images/blue-background.avif");
+    background-size: cover;
+    color: #DAA349;
+}
+
+.hi{
+    font-size: 3vw;
+    margin-top: 1vw;
+}
+
+.field{
+    margin: 0.5rem;
+    font-size: 2vw;
+    display: flex;
+    align-items: center;
+}
+
+
+.field label {
+    width: 10ch;
+    flex-shrink: 0;
+    text-align: left;
+}
+
+.field input {
+    width: 18rem;
+    font-size: 1.5vw;
+}
+
+button {
+    font-size: 1.5vw;
+    margin: 0.5vw;
+    width: 10vw;
+    height: 2.3vw;
+    color: white;
+    background-color: #DAA349;;
+}
+
+a {
+    color: #2ff0dd;
+}
