@@ -120,4 +120,105 @@
           });
         }
     </script>
-{% endblock %}
+{% endblock collapsible_lists_js %}
+
+{% block add_combo %}
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const new_combo = document.getElementById('new_combo');
+        if (!new_combo) return;
+
+        const closeComboWindow = () => {
+            if (new_combo.classList.contains('show')) {
+                new_combo.classList.remove('show');
+                new_combo.innerHTML = '';
+            }
+        };
+
+        document.addEventListener('click', (event) => {
+            const li = event.target.closest('.weapon-with-combos li');
+            if (!li) return;
+
+            const container = li.closest('.weapon-with-combos');
+            if (!container) return;
+
+            const collapsibleEl = container.querySelector('.collapsible');
+            const collapsibleText = collapsibleEl ? collapsibleEl.textContent.trim() : '';
+            const rowText = li.textContent.trim();
+
+            const previousText = new_combo.querySelector('.combo-text')
+                ? new_combo.querySelector('.combo-text').textContent.trim()
+                : '';
+
+            const potentialText = `${collapsibleText}: ${rowText}`;
+
+            let combinedText = potentialText;
+
+            if (previousText) {
+                const prevWeapon = previousText.split(':')[0].trim();
+                const potWeapon = potentialText.split(':')[0].trim();
+
+                const cleanPrevWeapon = prevWeapon.split('Combos')[0].trim();
+                const cleanPotWeapon = potWeapon.split('Combos')[0].trim();
+
+                if (cleanPrevWeapon === cleanPotWeapon) {
+                    const potActionPart = potentialText.substring(potentialText.indexOf(':') + 1).trim();
+                    const prevActionPart = previousText.substring(previousText.indexOf(':') + 1).trim();
+
+                    const prevLastSegment = prevActionPart.split('➔').pop().trim();
+                    const potFirstSegment = potActionPart.split('➔')[0].trim();
+
+                    if (prevLastSegment === potFirstSegment) {
+                        const arrowIndex = potActionPart.indexOf('➔');
+                        const remainder = potActionPart.substring(arrowIndex).trim();
+
+                        combinedText = `${previousText} ${remainder}`;
+                    } else {
+                        return;
+                    }
+                } else {
+                    return;
+                }
+            }
+
+            new_combo.innerHTML = `<span class="combo-text">${combinedText}</span>`;
+
+            new_combo.style.left = '50px';
+            new_combo.style.top = '50px';
+            new_combo.style.transform = 'none';
+            new_combo.classList.add('show');
+        });
+
+        document.addEventListener('click', (event) => {
+            const clickedInsideWindow = event.target.closest('#new_combo');
+            const clickedInsideList = event.target.closest('.weapon-with-combos');
+
+            if (!clickedInsideWindow && !clickedInsideList) {
+                closeComboWindow();
+            }
+        });
+
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        new_combo.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            offsetX = e.clientX - new_combo.offsetLeft;
+            offsetY = e.clientY - new_combo.offsetTop;
+            e.preventDefault();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            let x = e.clientX - offsetX;
+            let y = e.clientY - offsetY;
+            new_combo.style.left = `${x}px`;
+            new_combo.style.top = `${y}px`;
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+    });
+    </script>
+{% endblock add_combo %}
