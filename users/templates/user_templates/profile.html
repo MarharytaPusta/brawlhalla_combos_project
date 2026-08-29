@@ -6,12 +6,12 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Profile</title>
     <link rel="stylesheet" href ='{% static "user_static/css/profile.css" %}'>
 </head>
 <body>
-    <h6 class = "user_name"> {{email}} </h6>
-    <img src="{% static picture_path %}"
+    <h6 class = "user_name"> {{user.email}} </h6>
+    <img src="{% static user.picture %}"
          alt="legend"
          onerror="this.onerror=null; this.src='{% static 'brawlhalla_static/images/legends_images/Random.webp' %}';">
     <button class="change_image">Choose another legend</button>

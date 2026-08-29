@@ -16,14 +16,12 @@
         <h2 class="hi" > {% block main_text %} {% endblock main_text %} </h2>
         {% block if_registration_username%} {% endblock if_registration_username%}
         <div class="field">
-            <label>Email:</label>
-            <input type="email" class="ok form-control" id="email" name="email" placeholder="Enter email" >
+            <label>Username:</label>
+            <input class="ok" type="username" class="form-control" id="username" name="username" placeholder="Enter username" >
         </div>
-        <div class="field">
-            <label>Password:</label>
-            <input class="ok" type="password" class="form-control" id="password" name="password1" placeholder="Enter password" >
-        </div>
-        {% block if_registration_password2%} {% endblock if_registration_password2%}
+
+        {% block password1 %} {% endblock password1 %}
+        {% block if_registration_password2 %} {% endblock if_registration_password2 %}
         <button class="btn" type="submit">{% block submit_name %} {% endblock submit_name %}</button>
         <p class="bottom">{% block another_page_text %} {% endblock another_page_text %}  {% block another_page %} {% endblock another_page %}</p>
         <div style="color: red; font-weight: bold;">

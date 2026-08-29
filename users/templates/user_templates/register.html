@@ -8,10 +8,17 @@
 
 {% block if_registration_username %}
     <div class="field">
-        <label>Username:</label>
-        <input class="ok" type="username" class="form-control" id="username" name="username" placeholder="Enter username" >
+            <label>Email:</label>
+            <input type="email" class="ok form-control" id="email" name="email" placeholder="Enter email" >
     </div>
 {% endblock if_registration_username %}
+
+{% block password1 %}
+    <div class="field">
+        <label>Password:</label>
+        <input class="ok" type="password" class="form-control" id="password" name="password1" placeholder="Enter password" >
+    </div>
+{% endblock password1 %}
 
 {% block if_registration_password2%}
     <div class="field">
