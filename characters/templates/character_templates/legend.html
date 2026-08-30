@@ -122,6 +122,7 @@
     </script>
 {% endblock collapsible_lists_js %}
 
+
 {% block add_combo %}
     <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -134,6 +135,52 @@
                 new_combo.innerHTML = '';
             }
         };
+
+        function sendComboToDRF(comboText) {
+            const csrfInput = document.querySelector('[name=csrfmiddlewaretoken]');
+            const csrftoken = csrfInput ? csrfInput.value : '';
+
+            fetch('/api/save-combo/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken
+                },
+                body: JSON.stringify({ combo: comboText })
+            })
+            .then(response => {
+                return response.json().then(data => ({
+                    ok: response.ok,
+                    status: response.status,
+                    body: data
+                }));
+            })
+            .then(result => {
+                if (result.ok) {
+                    console.log('Успіх:', result.body.message);
+                    closeComboWindow();
+                } else {
+                    console.error('Помилка валідації DRF:', result.body);
+                }
+            })
+            .catch(error => {
+                console.error('Мережева помилка:', error);
+            });
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                if (!new_combo.classList.contains('show')) return;
+
+                const comboTextEl = new_combo.querySelector('.combo-text');
+                if (!comboTextEl) return;
+
+                const textToSend = comboTextEl.textContent.trim();
+                if (!textToSend) return;
+
+                sendComboToDRF(textToSend);
+            }
+        });
 
         document.addEventListener('click', (event) => {
             const li = event.target.closest('.weapon-with-combos li');
