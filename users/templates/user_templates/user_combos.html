@@ -1,0 +1,54 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My combos</title>
+    <link rel="stylesheet" href ='{% static "user_static/css/user_combos.css" %}'>
+</head>
+<body>
+    <b>Your combos</b>
+    {% for weapon_name, user_combos in weapon_combos.items %}
+        <div class="weapon-with-combos">
+                <h2 class="collapsible">{{weapon_name}} Combos ▼</h2>
+                <ul class="content list" style="display: none;">
+                    {% for user_combo in user_combos %}
+                        <li>{{user_combo}}</li>
+                    {% endfor %}
+                </ul>
+        </div>
+        <p></p>
+    {% endfor %}
+
+
+
+
+{% block collapsible_lists_js %}
+    <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+              content.style.display = "none";
+
+            } else {
+              content.style.display = "block";
+            }
+            if (this.textContent.includes("▼")) {
+                this.textContent = this.textContent.replace("▼", "▲");
+            } else if (this.textContent.includes("▲")) {
+                this.textContent = this.textContent.replace("▲", "▼");
+            }
+          });
+        }
+    </script>
+{% endblock collapsible_lists_js %}
+</body>
+</html>
