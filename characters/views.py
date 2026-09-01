@@ -84,12 +84,11 @@ class SaveComboAPIView(APIView):
             for i in range(len(combos)):
                 attack_name = combos[i]
                 attack = Attack.objects.get(name = attack_name)
-                attack_combo = AttackStep.objects.create(user_combo = combo_with_weapon, attack = attack, step_order = i+1)
+                AttackStep.objects.create(user_combo = combo_with_weapon, attack = attack, step_order = i+1)
 
             return Response(
                 {"status": "success", "message": "Combination was successfully saved"},
                 status=status.HTTP_201_CREATED
             )
 
-        print("ПОМИЛКА ВАЛІДАЦІЇ СЕРІАТОРІВ:", serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
