@@ -1,10 +1,11 @@
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 import json
 
-from game_db.models import Legend, Weapon, Combo, ComboAttack, Button, Attack, AttackButton
+from game_db.models import Legend, Combo, Button, Attack, AttackButton
 
 
-def all_legends(request):
+def all_legends(request) -> HttpResponse:
     legends = Legend.objects.all()
     legends = legends.order_by('name')
     dict_of_values = {
@@ -34,7 +35,7 @@ def get_buttons_pictures() -> dict[str, str]:
     return dict_buttons_pictures
 
 
-def get_all_legend_info(request, legend_name):
+def get_all_legend_info(request, legend_name) -> HttpResponse:
     dict_buttons_to_attack = get_attacks_buttons()
     json_buttons_to_attack = json.dumps(dict_buttons_to_attack)
     dict_buttons_pictures = get_buttons_pictures()
