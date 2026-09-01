@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.forms import AuthenticationForm
+import json
 
 from .forms import CustomUserCreationForm
 from game_db.models import Weapon
 from .models import User, UserComboWeapon, AttackStep
+from characters.views import get_attacks_buttons, get_buttons_pictures
 
 
 def register(request):
@@ -54,7 +56,15 @@ def user_combos(request):
         lst.append(attack_steps)
         weapon_combos[weapon.name] = lst
 
-    dict_values = {"weapon_combos" : weapon_combos}
+    dict_buttons_to_attack = get_attacks_buttons()
+    json_buttons_to_attack = json.dumps(dict_buttons_to_attack)
+    dict_buttons_pictures = get_buttons_pictures()
+    json_buttons_pictures = json.dumps(dict_buttons_pictures)
+
+    dict_values = {"weapon_combos" : weapon_combos,
+                   "json_buttons_to_attack": json_buttons_to_attack,
+                   "json_buttons_pictures": json_buttons_pictures,
+                   }
     print(dict_values)
 
     return render(request, 'user_templates/user_combos.html', dict_values)

@@ -52,6 +52,13 @@ li{
     visibility: visible;
 }
 
+.button-icon {
+    height: 50px;
+    vertical-align: middle;
+    margin: 0 4px;
+    border-radius: 4px;
+}
+
 .combo-container {
     display: inline-flex;
     align-items: center;

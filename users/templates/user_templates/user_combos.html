@@ -23,32 +23,100 @@
         <p></p>
     {% endfor %}
 
+    <div id="tooltip" class="tooltip"></div>
 
 
+    {% block tooltip_js %}
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const attacksData = JSON.parse('{{ json_buttons_to_attack|escapejs }}');
+                const rawImagesData = JSON.parse('{{ json_buttons_pictures|escapejs }}');
 
-{% block collapsible_lists_js %}
-    <script>
-        var coll = document.getElementsByClassName("collapsible");
-        var i;
+                const tooltip = document.getElementById('tooltip');
+                const staticBaseUrl = "{% static '' %}";
 
-        for (i = 0; i < coll.length; i++) {
-          coll[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (content.style.display === "block") {
-              content.style.display = "none";
+                const comboItems = document.querySelectorAll('.list li');
 
-            } else {
-              content.style.display = "block";
+                const attackNames = Object.keys(attacksData).sort((a, b) => b.length - a.length);
+
+                comboItems.forEach(item => {
+                    let html = item.innerHTML;
+
+                    attackNames.forEach(attack => {
+                        const regex = new RegExp(`\\b(${attack})\\b`, 'gi');
+                        html = html.replace(regex, `<span class="attack-hint" data-attack="${attack}">$1</span>`);
+                    });
+
+                    item.innerHTML = html;
+                });
+
+                document.addEventListener('mouseover', (e) => {
+                    const target = e.target.closest('.attack-hint');
+                    if (!target) return;
+
+                    const attackKey = target.getAttribute('data-attack');
+                    const rawButtonsText = attacksData[attackKey];
+
+                    if (rawButtonsText) {
+                        const buttonNames = rawButtonsText.split('➔').map(btn => btn.trim());
+
+                        const imagesHtml = buttonNames.map(btnName => {
+                            const imagePath = rawImagesData[btnName];
+                            if (imagePath) {
+                                const cleanPath = imagePath.startsWith('/') ? imagePath.slice(1) : imagePath;
+                                return `<img src="${staticBaseUrl}${cleanPath}" alt="${btnName}" class="button-icon">`;
+                            } else {
+                                return `<b>${btnName}</b>`;
+                            }
+                        }).join(' ');
+
+                        tooltip.innerHTML = `<span class="combo-container">${imagesHtml}</span>`;
+
+                        const rect = target.getBoundingClientRect();
+                        const tooltipX = rect.left + window.scrollX + (rect.width / 2);
+                        const tooltipY = rect.top + window.scrollY - 5;
+
+                        tooltip.style.left = `${tooltipX}px`;
+                        tooltip.style.top = `${tooltipY}px`;
+                        tooltip.style.transform = 'translate(-50%, -100%)';
+
+                        tooltip.classList.add('show');
+                    }
+                });
+
+                document.addEventListener('mouseout', (e) => {
+                    if (e.target.closest('.attack-hint')) {
+                        tooltip.classList.remove('show');
+                    }
+                });
+            });
+        </script>
+    {% endblock tooltip_js %}
+
+
+    {% block collapsible_lists_js %}
+        <script>
+            var coll = document.getElementsByClassName("collapsible");
+            var i;
+
+            for (i = 0; i < coll.length; i++) {
+              coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                  content.style.display = "none";
+
+                } else {
+                  content.style.display = "block";
+                }
+                if (this.textContent.includes("▼")) {
+                    this.textContent = this.textContent.replace("▼", "▲");
+                } else if (this.textContent.includes("▲")) {
+                    this.textContent = this.textContent.replace("▲", "▼");
+                }
+              });
             }
-            if (this.textContent.includes("▼")) {
-                this.textContent = this.textContent.replace("▼", "▲");
-            } else if (this.textContent.includes("▲")) {
-                this.textContent = this.textContent.replace("▲", "▼");
-            }
-          });
-        }
-    </script>
-{% endblock collapsible_lists_js %}
+        </script>
+    {% endblock collapsible_lists_js %}
 </body>
 </html>
