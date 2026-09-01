@@ -103,3 +103,25 @@ body {
 .collapsible {
   cursor: pointer;
 }
+
+
+.new_combo {
+    background-color: white;
+    color: #DD5944;
+    font-size: 1.5vw;
+    padding: 1vw;
+    border-radius: 0.5vw;
+    text-decoration: underline black 0.05vw;
+    text-underline-offset: 0.3vw;
+    position: fixed;
+    cursor: grab;
+    display: none;
+}
+
+.new_combo:active {
+    cursor: grabbing;
+}
+
+.new_combo.show {
+    display: block;
+}

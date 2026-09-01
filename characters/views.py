@@ -2,7 +2,14 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 import json
 
-from game_db.models import Legend, Combo, Button, Attack, AttackButton
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .serializers import ComboSerializer
+
+
+from game_db.models import Legend, Weapon, Combo, ComboAttack, Button, Attack, AttackButton
+from users.models import User, UserComboWeapon, AttackStep
 
 
 def all_legends(request) -> HttpResponse:
@@ -59,3 +66,30 @@ def get_all_legend_info(request, legend_name) -> HttpResponse:
     }
 
     return render(request,'character_templates/legend.html', dict_of_values)
+
+
+class SaveComboAPIView(APIView):
+    def post(self, request):
+        serializer = ComboSerializer(data=request.data)
+        if serializer.is_valid():
+            dict_weapon_combo = serializer.validated_data['combo']
+
+            weapon_name = dict_weapon_combo["weapon"]
+            weapon = Weapon.objects.get(name = weapon_name)
+            user = User.objects.get(username = request.user)
+
+            combo_with_weapon = UserComboWeapon.objects.create(user = user, weapon = weapon)
+
+            combos = dict_weapon_combo['combos']
+
+            for i in range(len(combos)):
+                attack_name = combos[i]
+                attack = Attack.objects.get(name = attack_name)
+                AttackStep.objects.create(user_combo = combo_with_weapon, attack = attack, step_order = i+1)
+
+            return Response(
+                {"status": "success", "message": "Combination was successfully saved"},
+                status=status.HTTP_201_CREATED
+            )
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.conf import settings
-from game_db.models import Weapon, Combo
+from game_db.models import Weapon, Combo, Attack
 
 
 class User(AbstractUser):
@@ -13,9 +13,9 @@ class UserComboWeapon(models.Model):
     weapon = models.ForeignKey(Weapon, on_delete=models.CASCADE, related_name='user_combos')
 
 
-class ComboStep(models.Model):
+class AttackStep(models.Model):
     user_combo = models.ForeignKey(UserComboWeapon, on_delete=models.CASCADE, related_name='steps')
-    combo = models.ForeignKey(Combo, on_delete=models.CASCADE)
+    attack = models.ForeignKey(Attack, on_delete=models.CASCADE)
     step_order = models.IntegerField()
 
     class Meta:

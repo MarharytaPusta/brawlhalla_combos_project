@@ -1,11 +1,15 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.forms import AuthenticationForm
+import json
 
 from .forms import CustomUserCreationForm
+from .models import UserComboWeapon, AttackStep
+from characters.views import get_attacks_buttons, get_buttons_pictures
 
 
-def register(request):
+def register(request) -> HttpResponse:
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
 
@@ -19,7 +23,7 @@ def register(request):
     return render(request,'user_templates/register.html', {'form': form})
 
 
-def login(request):
+def login(request) -> HttpResponse:
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
 
@@ -33,5 +37,34 @@ def login(request):
     return render(request,'user_templates/login.html', {'form': form})
 
 
-def profile(request):
+def profile(request) -> HttpResponse:
     return render(request, 'user_templates/profile.html')
+
+
+def user_combos(request) -> HttpResponse:
+    weapon_combos = {}
+
+    user = request.user
+
+    user_weapons = UserComboWeapon.objects.filter(user=user)
+    for user_weapon in user_weapons:
+        weapon = user_weapon.weapon
+        attack_steps = AttackStep.objects.filter(user_combo=user_weapon)
+        attack_steps = [attack_step.attack.name for attack_step in attack_steps]
+        attack_steps = ' ➔ '.join(attack_steps)
+        if weapon.name in weapon_combos:
+            weapon_combos[weapon.name].append(attack_steps)
+        else:
+            weapon_combos[weapon.name] = [attack_steps]
+
+    dict_buttons_to_attack = get_attacks_buttons()
+    json_buttons_to_attack = json.dumps(dict_buttons_to_attack)
+    dict_buttons_pictures = get_buttons_pictures()
+    json_buttons_pictures = json.dumps(dict_buttons_pictures)
+
+    dict_values = {"weapon_combos" : weapon_combos,
+                   "json_buttons_to_attack": json_buttons_to_attack,
+                   "json_buttons_pictures": json_buttons_pictures,
+                   }
+
+    return render(request, 'user_templates/user_combos.html', dict_values)
