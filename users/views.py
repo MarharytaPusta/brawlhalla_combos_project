@@ -1,15 +1,15 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.forms import AuthenticationForm
 import json
 
 from .forms import CustomUserCreationForm
-from game_db.models import Weapon
-from .models import User, UserComboWeapon, AttackStep
+from .models import UserComboWeapon, AttackStep
 from characters.views import get_attacks_buttons, get_buttons_pictures
 
 
-def register(request):
+def register(request) -> HttpResponse:
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
 
@@ -23,7 +23,7 @@ def register(request):
     return render(request,'user_templates/register.html', {'form': form})
 
 
-def login(request):
+def login(request) -> HttpResponse:
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
 
@@ -37,11 +37,11 @@ def login(request):
     return render(request,'user_templates/login.html', {'form': form})
 
 
-def profile(request):
+def profile(request) -> HttpResponse:
     return render(request, 'user_templates/profile.html')
 
 
-def user_combos(request):
+def user_combos(request) -> HttpResponse:
     weapon_combos = {}
 
     user = request.user
@@ -66,6 +66,5 @@ def user_combos(request):
                    "json_buttons_to_attack": json_buttons_to_attack,
                    "json_buttons_pictures": json_buttons_pictures,
                    }
-    print(dict_values)
 
     return render(request, 'user_templates/user_combos.html', dict_values)
