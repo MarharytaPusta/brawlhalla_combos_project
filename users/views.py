@@ -47,14 +47,15 @@ def user_combos(request):
     user = request.user
 
     user_weapons = UserComboWeapon.objects.filter(user=user)
-    lst = []
     for user_weapon in user_weapons:
         weapon = user_weapon.weapon
         attack_steps = AttackStep.objects.filter(user_combo=user_weapon)
         attack_steps = [attack_step.attack.name for attack_step in attack_steps]
         attack_steps = ' ➔ '.join(attack_steps)
-        lst.append(attack_steps)
-        weapon_combos[weapon.name] = lst
+        if weapon.name in weapon_combos:
+            weapon_combos[weapon.name].append(attack_steps)
+        else:
+            weapon_combos[weapon.name] = [attack_steps]
 
     dict_buttons_to_attack = get_attacks_buttons()
     json_buttons_to_attack = json.dumps(dict_buttons_to_attack)
