@@ -125,3 +125,17 @@ body {
 .new_combo.show {
     display: block;
 }
+
+
+.profile_img {
+    position: fixed;
+    top: 0.5vw;
+    right: 0.5vw;
+    left: auto;
+    z-index: 1000;
+    width: 5vw;
+    height: 5vw;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 0.3vw solid #DAA349;
+}

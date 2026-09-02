@@ -10,6 +10,13 @@
     <link rel="stylesheet" href ='{% static "user_static/css/user_combos.css" %}'>
 </head>
 <body>
+    <a href="/user/profile">
+        <img src="{% static user.picture %}"
+             alt="legend"
+             onerror="this.onerror=null; this.src='{% static 'brawlhalla_static/images/legends_images/Random.webp' %}';"
+             class="profile_img">
+    </a>
+
     <b>Your combos</b>
     {% for weapon_name, user_combos in weapon_combos.items %}
         <div class="weapon-with-combos">
