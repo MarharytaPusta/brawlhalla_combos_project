@@ -10,14 +10,63 @@
     <link rel="stylesheet" href ='{% static "user_static/css/profile.css" %}'>
 </head>
 <body>
-    <h6 class = "user_name"> {{user.email}} </h6>
-    <img src="{% static user.picture %}"
-         alt="legend"
-         onerror="this.onerror=null; this.src='{% static 'brawlhalla_static/images/legends_images/Random.webp' %}';">
-    <button class="change_image">Choose another legend</button>
+    <div class="profile_container">
+        <h6 class="user_name"> {{user.email}} </h6>
+
+        <img id="current_avatar"
+             src="{% static user.picture %}"
+             alt="legend"
+             onerror="this.onerror=null; this.src='{% static 'brawlhalla_static/images/legends_images/Random.webp' %}';">
+
+        <button class="change_image" id="change_button">Choose another legend</button>
+
+        <div id="choose_avatar_container" class="choose_avatar">
+            <div class="choose_avatar_content">
+                <h3>Choose your legend</h3>
+
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <div class="avatar_grid">
+                        {% for photo_path in legends_photos %}
+                            <label class="avatar_option">
+                                <input type="radio" name="selected_avatar" value="{{ photo_path }}" {% if user.picture == photo_path %}checked{% endif %}>
+                                <img src="{% static photo_path %}" alt="Legend">
+                            </label>
+                            {% empty %}
+                            <p>No legends found in folder</p>
+                        {% endfor %}
+
+                    </div>
+                    <button type="submit" class="save_avatar_btn">Save Legend</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="button_container">
         <button class="change_page" onclick="location.href='/'">Choose legends</button>
         <button class="change_page" onclick="location.href='combos'">See my combos</button>
     </div>
+
+    <script>
+        const choose_avatar_container = document.getElementById("choose_avatar_container");
+        const btn = document.getElementById("change_button");
+
+        btn.onclick = function(event) {
+            event.stopPropagation();
+            if (choose_avatar_container.style.display === "block") {
+                choose_avatar_container.style.display = "none";
+            } else {
+                choose_avatar_container.style.display = "block";
+            }
+        }
+
+        window.onclick = function(event) {
+            if (!choose_avatar_container.contains(event.target) && event.target !== btn) {
+                choose_avatar_container.style.display = "none";
+            }
+        }
+    </script>
+
 </body>
 </html>

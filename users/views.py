@@ -2,7 +2,11 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.staticfiles import finders
+from django.conf import settings
 import json
+import os
 
 from .forms import CustomUserCreationForm
 from .models import UserComboWeapon, AttackStep
@@ -37,10 +41,6 @@ def login(request) -> HttpResponse:
     return render(request,'user_templates/login.html', {'form': form})
 
 
-def profile(request) -> HttpResponse:
-    return render(request, 'user_templates/profile.html')
-
-
 def user_combos(request) -> HttpResponse:
     weapon_combos = {}
 
@@ -68,3 +68,29 @@ def user_combos(request) -> HttpResponse:
                    }
 
     return render(request, 'user_templates/user_combos.html', dict_values)
+
+
+@login_required
+def profile(request) -> HttpResponse:
+    user = request.user
+
+    if request.method == 'POST':
+        selected_avatar = request.POST.get('selected_avatar')
+        if selected_avatar:
+            user.picture = selected_avatar
+            user.save()
+
+    legends_dir = os.path.join(settings.BASE_DIR, 'brawlhalla_static', 'images', 'legends_images')
+    legends_pictures = []
+    relative_folder_path = 'brawlhalla_static/images/legends_images'
+    absolute_path = finders.find(relative_folder_path)
+
+    if absolute_path and os.path.exists(absolute_path):
+        for file in os.listdir(absolute_path):
+            if file.lower().endswith('.webp'):
+                legends_pictures.append(f'{relative_folder_path}/{file}')
+
+    return render(request, 'user_templates/profile.html', {
+        'user': user,
+        'legends_photos': legends_pictures
+    })

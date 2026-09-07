@@ -55,3 +55,84 @@ button {
     border-block-color : #DB774B;
 }
 
+.profile_container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.choose_avatar {
+    display: none;
+    position: absolute;
+    top: 100%; /* З'являється відразу під кнопкою "Choose another legend" */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+}
+
+.choose_avatar_content {
+    background-color: #ffffff;
+    color: #333333;
+    padding: 15px;
+    width: 30vw;
+    border-radius: 1vw;
+    text-align: center;
+}
+
+.choose_avatar_content h3 {
+    font-size: 16px;
+    color: #2c3e50;
+}
+
+.avatar_grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1vw;
+    max-height: 12vw;
+    overflow-y: auto;
+}
+
+.avatar_grid::-webkit-scrollbar {
+    width: 0.7vw;
+}
+.avatar_grid::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 1vw;
+}
+
+.avatar_option input[type="radio"] {
+    display: none;
+}
+
+.avatar_option img {
+    width: 5vw;
+    height: 5vw;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 0.25vw solid #f0f0f0;
+    cursor: pointer;
+}
+
+.avatar_option img:hover {
+    transform: scale(1.05);
+    border-color: #b3b3b3;
+}
+
+.avatar_option input[type="radio"]:checked + img {
+    border-color: #3498db;
+}
+
+.save_avatar_btn {
+    background-color: #DC804E;
+    color: white;
+    border: none;
+    padding: 0.5vw;
+    font-size: 1vw;
+    border-radius: 0.5vw;
+    cursor: pointer;
+    width: 100%;
+}
