@@ -51,6 +51,18 @@ img {
     background-color: #DC804E;
 }
 
+.logout {
+    font-size: 1.1vw;
+    position: fixed;
+    top: 0.5vw;
+    right: 0.5vw;
+    z-index: 1000;
+    width: 7vw;
+    height: 2vw;
+    color: #152741;
+    background-color: #DC804E;
+}
+
 button {
     border-block-color : #DB774B;
 }
