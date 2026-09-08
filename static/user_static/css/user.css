@@ -1,7 +1,7 @@
 body{
     display: grid;
     place-items: center;
-    background: url("../images/blue-background.avif");
+    background: url("../../shared_static/images/blue-background.avif");
     background-size: cover;
     color: #DAA349;
 }

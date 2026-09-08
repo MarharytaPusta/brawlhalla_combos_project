@@ -1,0 +1,18 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'shared_static/css/profile_icon.css' %}">
+
+{% if user.is_authenticated %}
+    <a href="/user/profile">
+        <img src="{% static user.picture %}"
+             alt="legend"
+             onerror="this.onerror=null; this.src='{% static 'brawlhalla_static/images/legends_images/Random.webp' %}';"
+             class="profile_img">
+    </a>
+{% else %}
+    <a href="/user/login">
+        <img src="{% static user.picture %}"
+             alt="legend"
+             onerror="this.onerror=null; this.src='{% static 'brawlhalla_static/images/legends_images/Random.webp' %}';"
+             class="profile_img">
+    </a>
+{% endif %}

@@ -10,12 +10,7 @@
     <link rel="stylesheet" href ='{% static "brawlhalla_static/css/choosing_styles.css" %}'>
 </head>
 <body>
-    <a href="user/profile">
-        <img src="{% static user.picture %}"
-             alt="legend"
-             onerror="this.onerror=null; this.src='{% static 'brawlhalla_static/images/legends_images/Random.webp' %}';"
-             class="profile_img">
-    </a>
+    {% include "shared_html/profile_icon.html" with user=user %}
 
     <p>{% block main_text %} {% endblock %}</p>
     <ul>

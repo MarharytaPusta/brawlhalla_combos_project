@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Jomhuria&display=swap');
 
 body {
-    background: url("../images/blue-background.avif");
+    background: url("../../shared_static/images/blue-background.avif");
     background-size: cover;
     color: #2ff0dd;
     font-family: 'Jomhuria', sans-serif;
@@ -34,17 +34,4 @@ li::marker {
 ul {
   column-count: 3;
   column-gap: 20px;
-}
-
-.profile_img {
-    position: fixed;
-    top: 0.5vw;
-    right: 0.5vw;
-    left: auto;
-    z-index: 1000;
-    width: 5vw;
-    height: 5vw;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 0.3vw solid #DAA349;
 }
