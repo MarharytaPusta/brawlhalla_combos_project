@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Jomhuria&display=swap');
 
 body {
-    background: url("../images/blue-background.avif");
+    background: url("../../shared_static/images/blue-background.avif");
     background-size: cover;
     color: #DAA349;
     font-family: 'Inter', sans-serif;
