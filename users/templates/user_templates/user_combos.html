@@ -18,7 +18,7 @@
                 <h2 class="collapsible">{{weapon_name}} Combos ▼</h2>
                 <ul class="content list" style="display: none;">
                     {% for user_combo in user_combos %}
-                        <li>{{user_combo}}</li>
+                        <li id="{{ user_combo.0 }}" class="attacks">{{user_combo.1}}</li>
                     {% endfor %}
                 </ul>
         </div>
@@ -26,6 +26,10 @@
     {% endfor %}
 
     <div id="tooltip" class="tooltip"></div>
+
+    <div id="context-menu">
+        <button id="delete-btn">Delete</button>
+    </div>
 
 
     {% block tooltip_js %}
@@ -120,5 +124,65 @@
             }
         </script>
     {% endblock collapsible_lists_js %}
+
+
+    {% block delete_combo %}
+
+        <script>
+            const csrftoken = "{{ csrf_token }}";
+
+            document.addEventListener("DOMContentLoaded", () => {
+                const menu = document.getElementById("context-menu");
+                const deleteBtn = document.getElementById("delete-btn");
+                let currentId = null;
+
+                document.querySelectorAll(".attacks").forEach(item => {
+                    item.addEventListener("contextmenu", (e) => {
+                        e.preventDefault();
+
+                        currentId = item.id;
+
+                        menu.style.display = "block";
+                        menu.style.left = `${e.pageX}px`;
+                        menu.style.top = `${e.pageY}px`;
+                    });
+                });
+
+                document.addEventListener("pointerdown", (e) => {
+                    if (!menu.contains(e.target)) {
+                        menu.style.display = "none";
+                    }
+                });
+
+                deleteBtn.addEventListener("click", () => {
+                    if (!currentId) return;
+
+                    const url = `/user/profile/combos`;
+
+                    fetch(url, {
+                        method: "POST",
+                        headers: {
+                            "X-CSRFToken": csrftoken,
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ item_id: currentId })
+                    })
+                    .then(async response => {
+                        const text = await response.text();
+                        return text.trim();
+                    })
+                    .then(result => {
+                        if (result === "success") {
+                            document.getElementById(currentId).remove();
+                            menu.style.display = "none";
+                        }
+                    })
+                });
+            });
+        </script>
+
+    {% endblock delete_combo %}
+
+
 </body>
 </html>

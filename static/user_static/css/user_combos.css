@@ -66,5 +66,17 @@ li{
 }
 
 .collapsible {
-  cursor: pointer;
+    cursor: pointer;
+}
+
+#context-menu {
+    display: none;
+    position: absolute;
+    z-index: 1000;
+}
+
+#delete-btn {
+    cursor: pointer;
+    padding: 0.5vw;
+    font-size: 1.3vw;
 }

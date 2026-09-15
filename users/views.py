@@ -43,20 +43,26 @@ def login(request) -> HttpResponse:
 
 
 def user_combos(request) -> HttpResponse:
+    if request.method == "POST":
+        return delete_combo(request)
+
     weapon_combos = {}
 
     user = request.user
 
     user_weapons = UserComboWeapon.objects.filter(user=user)
     for user_weapon in user_weapons:
+        user_attack_id = user_weapon.id
+        attack_and_id = [user_attack_id]
         weapon = user_weapon.weapon
         attack_steps = AttackStep.objects.filter(user_combo=user_weapon)
         attack_steps = [attack_step.attack.name for attack_step in attack_steps]
         attack_steps = ' ➔ '.join(attack_steps)
+        attack_and_id.append(attack_steps)
         if weapon.name in weapon_combos:
-            weapon_combos[weapon.name].append(attack_steps)
+            weapon_combos[weapon.name].append(attack_and_id)
         else:
-            weapon_combos[weapon.name] = [attack_steps]
+            weapon_combos[weapon.name] = [attack_and_id]
 
     dict_buttons_to_attack = get_attacks_buttons()
     json_buttons_to_attack = json.dumps(dict_buttons_to_attack)
@@ -69,6 +75,18 @@ def user_combos(request) -> HttpResponse:
                    }
 
     return render(request, 'user_templates/user_combos.html', dict_values)
+
+
+def delete_combo(request):
+    try:
+        data = json.loads(request.body)
+        item_id = data.get("item_id")
+        item = UserComboWeapon.objects.get(id=item_id)
+        item.delete()
+        return HttpResponse("success")
+
+    except Exception:
+        return HttpResponse("error", status=400)
 
 
 @login_required
